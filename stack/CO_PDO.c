@@ -982,7 +982,7 @@ void CO_TPDO_process(
         uint32_t                timeDifference_us)
 {
     if(TPDO->valid && *TPDO->operatingState == CO_NMT_OPERATIONAL){
-
+printf("valid and oper\n");
         /* Send PDO by application request or by Event timer */
         if(TPDO->TPDOCommPar->transmissionType >= 253){
             if(TPDO->inhibitTimer == 0 && (TPDO->sendRequest || (TPDO->TPDOCommPar->eventTimer && TPDO->eventTimer == 0))){
@@ -1013,12 +1013,14 @@ void CO_TPDO_process(
                 if(TPDO->syncCounter == 254){
                     if(SYNC->counter == TPDO->TPDOCommPar->SYNCStartValue){
                         TPDO->syncCounter = TPDO->TPDOCommPar->transmissionType;
+						printf("if the SYNCStartValue is in use,");
                         CO_TPDOsend(TPDO);
                     }
                 }
                 /* Send PDO after every N-th Sync */
                 else if(--TPDO->syncCounter == 0){
                     TPDO->syncCounter = TPDO->TPDOCommPar->transmissionType;
+					printf("Send PDO after every N-th Sync\n");
                     CO_TPDOsend(TPDO);
                 }
             }

@@ -74,6 +74,8 @@ extern "C" {
  * version 2 with the classpath exception.
  */
 
+#define CO_NO_LSS_SERVER 0
+#define CO_NO_LSS_CLIENT 0
 
     #include "CO_driver.h"
     #include "CO_OD.h"
